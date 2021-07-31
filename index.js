@@ -726,7 +726,7 @@ switch(command) {
 // TAB : DASBOARD
 case 'help':
 case 'menu':
-pict = fs.readFileSync('./src/Farhanjs/icon.jpg')
+pict = fs.readFileSync('./src/Farhanjs/derpesod.jpg')
 F = zw.menu(namabot, nama, time, prefix)
 zwah.sendMessage(from, pict, image, {quoted: mek, caption: F})
 break
