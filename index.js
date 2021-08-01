@@ -111,6 +111,7 @@ fake = set.fake
 authors = set.authors
 namas = set.namas
 cr = set.cr
+botName = "zwahbot2"
 
 // TAB : GAME MODULE
 tempat = ["Sungai","Laut","Empang pak slamet","Danau","Rawa"]
