@@ -146,7 +146,7 @@ const {
     getAfkTime,
     getAfkId,
     getAfkPosition
-} = require('./lib/user/afk.json')
+} = require('./lib/group/afk.js')
 
 const getLevelingXp = (sender) => {
             let position = false
@@ -726,7 +726,7 @@ switch(command) {
 // TAB : DASBOARD
 case 'help':
 case 'menu':
-pict = fs.readFileSync('./src/Farhanjs/derpesod.jpg')
+pict = fs.readFileSync('./src/Farhanjs/depresod.jpg')
 F = zw.menu(namabot, nama, time, prefix)
 zwah.sendMessage(from, pict, image, {quoted: mek, caption: F})
 break
@@ -873,13 +873,13 @@ case 'mining':
 					uptime = process.uptime()
 					teks = `*Namabot* : *Zwah*\n*OWNER* : *Farhanjs*\n*AUTHOR* : zwah\n*Nomor Bot* : 6281247374916\n*Prefix* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
 					buffer = await getBuffer(me.imgUrl)
-					mukty.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
+					zwah.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
 					case 'admin':
             case 'owner':
             case 'creator':
-                  mukty.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: mek})
-                  mukty.sendMessage(from, 'CHAT UNTUK TANYA TANYA ATAU JOIN CONTRIBUTOR',MessageType.text, { quoted: mek} )
+                  zwah.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: mek})
+                  zwah.sendMessage(from, 'CHAT UNTUK TANYA TANYA ATAU JOIN CONTRIBUTOR',MessageType.text, { quoted: mek} )
                      break
                      case 'listnotoxic':
                     let lbw = `Ini adalah list BAD WORD\nTotal : ${bad.length}\n`
@@ -941,12 +941,12 @@ case 'notoxic':
 					mukty.updatePresence(from, Presence.composing) 
 				     if (!isOwner) return reply(zw.ownerb())
 					if (args.length < 1) return reply('.......')
-					anu = await mukty.chats.all()
+					anu = await zwah.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						buff = await mukty.downloadMediaMessage(encmedia)
+						buff = await zwah.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
-							mukty.sendMessage(_.jid, buff, image, {caption: `*「 BC BOT 」*\n\n${body.slice(4)}`})
+							zwah.sendMessage(_.jid, buff, image, {caption: `*「 BC BOT 」*\n\n${body.slice(4)}`})
 						}
 						reply('')
 					} else {
@@ -963,9 +963,9 @@ case 'notoxic':
 					nom = mek.participant
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						buff = await mukty.downloadMediaMessage(encmedia)
+						buff = await zwah.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
-							mukty.sendMessage(_.jid, buff, image, {caption: `*「 BC GROUP 」*\n\n➸ Dari Grup : ${groupName}\n➸ Pengirim : wa.me/${(sender.split('@')[0])}\n➸ Pesan : ${body.slice(6)}`})
+							zwah.sendMessage(_.jid, buff, image, {caption: `*「 BC GROUP 」*\n\n➸ Dari Grup : ${groupName}\n➸ Pengirim : wa.me/${(sender.split('@')[0])}\n➸ Pesan : ${body.slice(6)}`})
 						}
 						reply('*「 SUKSES BOSKU 」*')
 					} else {
@@ -992,7 +992,7 @@ case 'notoxic':
 				case 'clearall':
 					if (!isOwner) return reply(zw.ownerb())
 					anu = await mukty.chats.all()
-					mukty.setMaxListeners(25)
+					zwah.setMaxListeners(25)
 					for (let _ of anu) {
 	mukty.deleteChat(_.jid)
 					}
@@ -1003,22 +1003,22 @@ case 'notoxic':
 				 mukty.chatRead (from)
 					if (!isGroup) return reply(zw.groupo())
 					if (!isOwner) return reply(zw.ownerb())
-					mukty.blockUser (`${body.slice(7)}@c.us`, "add")
-					mukty.sendMessage(from, `perintah Diterima, memblokir ${body.slice(7)}@c.us`, text)
+					zwah.blockUser (`${body.slice(7)}@c.us`, "add")
+					zwah.sendMessage(from, `perintah Diterima, memblokir ${body.slice(7)}@c.us`, text)
 					break
                     case 'unblock':
 					if (!isGroup) return reply(zw.groupo())
 					if (!isOwner) return reply(zw.ownerb())
 				    mukty.blockUser (`${body.slice(9)}@c.us`, "remove")
-					mukty.sendMessage(from, `Perintah Diterima, membuka ${body.slice(9)}@c.us`, text)
+				        zwah.sendMessage(from, `Perintah Diterima, membuka ${body.slice(9)}@c.us`, text)
 					break   				
 					case 'setppbot':
 					if (!isOwner) return reply(zw.ownerb())
-				    mukty.updatePresence(from, Presence.composing) 
+				    zwah.updatePresence(from, Presence.composing) 
 					if (!isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix}setbotpp atau tag gambar yang sudah dikirim`)
 					enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					media = await mukty.downloadAndSaveMediaMessage(enmedia)
-					await mukty.updateProfilePicture(botNumber, media)
+					media = await zwah.downloadAndSaveMediaMessage(enmedia)
+					await zwah.updateProfilePicture(botNumber, media)
 					reply('Makasih profil barunya bosku😗')
 					break
 				case 'clone':
@@ -1029,9 +1029,9 @@ case 'notoxic':
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 					let { jid, id, notify } = groupMembers.find(x => x.jid === mentioned)
 					try {
-						pp = await mukty.getProfilePicture(id)
+						pp = await zwah.getProfilePicture(id)
 						buffer = await getBuffer(pp)
-						mukty.updateProfilePicture(botNumber, buffer)
+						zwah.updateProfilePicture(botNumber, buffer)
 						mentions(`Foto profile Berhasil di perbarui menggunakan foto profile @${id.split('@')[0]}`, [jid], true)
 					} catch (e) {
 						reply(zw.stikga())
